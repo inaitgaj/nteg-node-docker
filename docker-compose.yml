@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  app:
+    build:
+      context: . # looks for Dockerfile on . path.
+    image: inaitgaj/node-mongo-d # image name
+    #command: debug-docker # to override CMD argument start script
+    environment:
+      - MONGO_HOSTNAME=mongo
+    ports:
+      - "80:3000"
+      - "5858:5858"
+    depends_on:
+        - mongo
+  mongo:
+    image: mongo
+    container_name: mongo
